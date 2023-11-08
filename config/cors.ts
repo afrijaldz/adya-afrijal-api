@@ -41,10 +41,10 @@ const corsConfig: CorsConfig = {
   | Array             - An array of allowed origins.
   | String (*)        - A wildcard (*) to allow all request origins.
   | Function          - Receives the current origin string and should return
-  |                     one of the above values.
+  |                     ozne of the above values.
   |
   */
-  origin: true,
+  origin: '*',
 
   /*
   |--------------------------------------------------------------------------
