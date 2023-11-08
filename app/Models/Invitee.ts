@@ -11,6 +11,12 @@ export default class Invitee extends BaseModel {
   @column()
   public hash: string
 
+  @column()
+  public from: string
+
+  @column()
+  public sumbangan: boolean
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

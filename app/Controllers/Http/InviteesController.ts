@@ -48,10 +48,14 @@ export default class InviteesController {
 
   public async create({ response, request }: HttpContextContract) {
     const name = request.input('name')
+    const from = request.input('from')
+    const sumbangan = request.input('sumbangan')
 
     try {
       const newPackage = new Invitee()
       newPackage.name = name
+      newPackage.from = from
+      newPackage.sumbangan = sumbangan
       newPackage.hash = this.makeid(5)
 
       const data = await newPackage.save()
@@ -71,12 +75,24 @@ export default class InviteesController {
   public async edit({ request, response }: HttpContextContract) {
     const id = request.param('id')
     const name = request.input('name')
+    const from = request.input('from')
+    const sumbangan = request.input('sumbangan')
 
     try {
       const newData = await Invitee.find(id)
 
       if (newData) {
-        newData.name = name
+        if (name) {
+          newData.name = name
+        }
+
+        if (from) {
+          newData.from = from
+        }
+
+        if (sumbangan) {
+          newData.sumbangan = sumbangan
+        }
 
         const data = await newData.save()
 
