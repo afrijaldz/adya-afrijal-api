@@ -5,3 +5,7 @@ Route.get('/:id', 'InviteesController.detail')
 Route.post('/', 'InviteesController.create')
 Route.put('/:id', 'InviteesController.edit')
 Route.delete('/:id', 'InviteesController.delete')
+
+Route.get('/check', () => {
+  return 'Hello world'
+})
