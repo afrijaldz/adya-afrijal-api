@@ -29,6 +29,23 @@ export default class InviteesController {
     }
   }
 
+  public async hashDetail({ request, response }: HttpContextContract) {
+    const hash = request.param('hash')
+
+    try {
+      const data = await Invitee.findBy('hash', hash)
+
+      return response.json({
+        data,
+      })
+    } catch (error) {
+      console.log(error)
+      return response.json({
+        error,
+      })
+    }
+  }
+
   public async detail({ request, response }: HttpContextContract) {
     const id = request.param('id')
 
