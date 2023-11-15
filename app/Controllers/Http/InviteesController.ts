@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Invitee from 'App/Models/Invitee'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class InviteesController {
   private makeid(length) {
@@ -16,7 +17,15 @@ export default class InviteesController {
 
   public async list(ctx: HttpContextContract) {
     try {
-      const data = await Invitee.all()
+      const from = ctx.request.qs().from
+
+      console.log(from)
+
+      const data = await Database.from('invitees').where((query) => {
+        if (from) {
+          query.where('from', from)
+        }
+      })
 
       return ctx.response.json({
         data,
